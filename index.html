@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="الموقع الرسمي للدكتورة عائشة ديحان العازمي - ستاذ مشارك علم النفس التربوي">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <title>د. عائشة ديحان العازمي | الموقع الرسمي</title>
+    
+    <style>
+
+
+
+
+
+
+
+
+
+/* الحل النهائي لثبات الصفحة ومنع الـ Overflow الجانبي */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+/* حركة أمان إضافية: أي قسم في الموقع لازم يلتزم بحدود الشاشة */
+section, header, footer, main, .container {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* لو المشكلة بسبب الـ Blobs أو الخلفية المتحركة اللي ضفناها */
+.grand-bg, .premium-bg, #particles-js, .blob, .shape {
+    max-width: 100vw;
+    overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.contact-details { /* أو الكلاس المسؤول عن هذا الجزء */
+    text-align: center; /* لجعل النص في المنتصف */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* لجعل الخط وكل العناصر تحت بعضها في المنتصف */
+}
+
+.section-title {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* الخط الصغير (Divider) */
+.section-title::after { 
+    content: "";
+    display: block;
+    width: 60px;
+
+    
+    height: 3px;
+    background: var(--accent-color);
+    margin: 10px auto; /* كلمة auto هنا هي التي ستجعل الخط في المنتصف */
+}
+
+
+
+
+
+        /* === 1. الإعدادات الأساسية والمتغيرات === */
+        :root {
+            --primary-color: #1a2a6c;
+            --accent-color: #d4af37;
+            --accent-hover: #b8960b;
+            --text-dark: #2d3436;
+            --text-light: #636e72;
+            --white: #ffffff;
+            --bg-light: #f9f9f9;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        .progress-bar {
+            position: fixed; top: 0; right: 0; width: 0%; height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            z-index: 9999; transition: width 0.2s;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 10px; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* === 2. خلفية المتحركة === */
+        .bg-animation {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1; background: #ffffff; filter: blur(80px);
+        }
+        .blob {
+            position: absolute; width: 500px; height: 500px;
+            background: rgba(212, 175, 55, 0.08); border-radius: 50%;
+            animation: move 20s infinite alternate;
+        }
+        .blob:nth-child(2) {
+            background: rgba(26, 42, 108, 0.05); width: 600px; height: 600px;
+            animation-duration: 25s; animation-delay: -5s; right: 0; bottom: 0;
+        }
+        @keyframes move {
+            0% { transform: translate(-10%, -10%) scale(1); }
+            50% { transform: translate(50%, 20%) scale(1.2); }
+            100% { transform: translate(20%, 50%) scale(1); }
+        }
+
+        /* === 3. شريط التنقل (Navbar) === */
+        .navbar {
+            position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px); z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05); padding: 15px 0;
+            transition: var(--transition);
+        }
+        .navbar.scrolled { padding: 10px 0; background: rgba(255, 255, 255, 0.98); box-shadow: 0 4px 25px rgba(0,0,0,0.08); }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .logo-text { font-size: 1.5rem; font-weight: 800; color: var(--primary-color); letter-spacing: -0.5px; }
+        .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-dark); font-weight: 500;
+            transition: var(--transition); font-size: 0.95rem; position: relative;
+        }
+        .nav-links a:not(.nav-btn):hover { color: var(--accent-color); }
+        .nav-links a:not(.nav-btn)::after {
+            content: ''; position: absolute; bottom: -5px; right: 0; width: 0; height: 2px;
+            background: var(--accent-color); transition: width 0.3s;
+        }
+        .nav-links a:not(.nav-btn):hover::after { width: 100%; }
+        .nav-btn {
+            background: var(--primary-color); color: var(--white) !important;
+            padding: 10px 25px; border-radius: 50px; transition: var(--transition);
+        }
+        .nav-btn:hover { background: var(--accent-color); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2); }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary-color); }
+
+        /* === 4. قسم الواجهة (Hero) === */
+        .hero {
+            padding: 180px 0 100px; background: linear-gradient(135deg, #fdfbf7 0%, #ffffff 100%);
+            position: relative; min-height: 100vh; display: flex; align-items: center;
+        }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .badge {
+            background: rgba(212, 175, 55, 0.1); color: var(--accent-color);
+            padding: 5px 15px; border-radius: 20px; font-size: 0.85rem;
+            font-weight: 700; display: inline-block; margin-bottom: 20px; border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .hero-content h1 {
+            font-size: 3.2rem; line-height: 1.3; color: var(--primary-color); margin-bottom: 25px;
+        }
+        .hero-content h1 span { color: var(--accent-color); position: relative; }
+        .hero-content p { color: var(--text-light); margin-bottom: 30px; font-size: 1.1rem; line-height: 1.9; }
+        .cta-group { display: flex; gap: 15px; flex-wrap: wrap; }
+        
+        /* الأزرار */
+        .btn {
+            padding: 15px 30px; border-radius: 50px; border: none; cursor: pointer;
+            font-weight: 700; transition: var(--transition); font-family: 'Tajawal', sans-serif;
+            font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+        }
+        .btn-gold { background: var(--accent-color); color: white; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2); }
+        .btn-gold:hover { background: var(--accent-hover); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.35); transform: translateY(-3px); }
+        .btn-outline { background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); }
+        .btn-outline:hover { background: var(--primary-color); color: white; transform: translateY(-3px); }
+        .w-100 { width: 100%; justify-content: center; }
+
+        /* صورة البروفايل */
+        .hero-image-wrap { position: relative; z-index: 1; text-align: center; }
+        .main-img {
+            width: 100%; max-width: 450px; height: 550px; object-fit: cover;
+            border-radius: 30px 100px 30px 30px; border: 10px solid #fff;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15); transition: var(--transition);
+        }
+        .main-img:hover { transform: scale(1.02) rotate(-1deg); }
+        .floating-badge {
+            position: absolute; bottom: 30px; right: 10%; background: white;
+            padding: 15px 25px; border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); font-weight: 800;
+            color: var(--accent-color); font-size: 0.9rem; animation: float 3s ease-in-out infinite;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+
+        /* === 5. الأقسام العامة === */
+        .section-padding { padding: 100px 0; }
+        .bg-light { background: var(--bg-light); }
+        .bg-dark { background: #0f172a; color: white; }
+        .text-center { text-align: center; }
+        .text-white { color: white; }
+        .section-title {
+            font-size: 2.2rem; color: var(--primary-color); margin-bottom: 50px; position: relative;
+        }
+        .bg-dark .section-title { color: var(--accent-color); }
+        .section-title::after {
+            content: ''; display: block; width: 60px; height: 4px;
+            background: var(--accent-color); margin: 15px auto 0; border-radius: 2px;
+        }
+        .section-desc { color: var(--text-light); margin-top: -30px; margin-bottom: 50px; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        /* === 6. السيرة الذاتية والأرقام === */
+        .bio-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center; }
+        .lead-text { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); margin-bottom: 15px; }
+        .key-features { list-style: none; margin-top: 20px; }
+        .key-features li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: var(--text-dark); }
+        .key-features i { color: var(--accent-color); font-size: 1.1rem; }
+        .bio-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .stat-item {
+            background: white; padding: 30px 20px; border-radius: 15px; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee; transition: var(--transition);
+        }
+        .stat-item:hover { transform: translateY(-5px); border-color: var(--accent-color); box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
+        .stat-item h3 { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 5px; }
+        .stat-item p { color: var(--text-light); font-size: 0.9rem; font-weight: 500; }
+
+        /* === 7. البطاقات الأكاديمية والتدريس === */
+        .qual-grid, .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .qual-card, .course-card {
+            background: var(--white); padding: 40px; border-radius: 20px;
+            transition: var(--transition); border-bottom: 5px solid transparent;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; overflow: hidden; text-align: center;
+        }
+        .qual-card::before, .course-card::before {
+            content: ''; position: absolute; top: 0; right: 0; width: 100%; height: 0;
+            background: linear-gradient(to bottom, rgba(26,42,108,0.03), transparent); transition: var(--transition);
+        }
+        .qual-card:hover, .course-card:hover { transform: translateY(-10px); border-color: var(--accent-color); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        .qual-card:hover::before, .course-card:hover::before { height: 100%; }
+        .icon-box { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 20px; position: relative; z-index: 1; }
+        .qual-card h3, .course-card h3 { position: relative; z-index: 1; margin-bottom: 10px; color: var(--primary-color); font-size: 1.2rem; }
+        .univ { color: var(--accent-color); font-weight: 700; margin-bottom: 10px; position: relative; z-index: 1; }
+        .detail { color: var(--text-light); font-size: 0.9rem; position: relative; z-index: 1; line-height: 1.6; }
+
+        /* === 8. الأبحاث (Accordion) === */
+        .research-accordion { max-width: 800px; margin: 0 auto; }
+        .research-box {
+            background: var(--white); margin-bottom: 15px; border-radius: 12px;
+            border: 1px solid #eee; overflow: hidden; transition: 0.3s;
+        }
+        .research-box.active { border-color: var(--accent-color); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.1); }
+        .r-header {
+            padding: 20px; display: flex; align-items: center; cursor: pointer; justify-content: space-between;
+        }
+        .r-header h4 { flex: 1; margin-right: 15px; font-size: 1.05rem; color: var(--text-dark); }
+        .r-num { color: var(--accent-color); font-weight: 800; font-size: 1.2rem; }
+        .r-header i { color: var(--text-light); transition: 0.3s; }
+        .research-box.active i { transform: rotate(45deg); color: var(--accent-color); }
+        .r-body {
+            padding: 0 20px 0 60px; color: var(--text-light); font-size: 0.95rem;
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; line-height: 1.8;
+        }
+        .research-box.active .r-body { padding-bottom: 20px; max-height: 200px; }
+
+        /* === 9. الخبرات (Timeline) === */
+        .exp-timeline { position: relative; padding-right: 40px; max-width: 700px; margin: 0 auto; }
+        .exp-timeline::before {
+            content: ''; position: absolute; right: 8px; top: 0; bottom: 0;
+            width: 2px; background: rgba(255,255,255,0.2);
+        }
+        .exp-item { margin-bottom: 40px; position: relative; }
+        .exp-item::before {
+            content: ''; position: absolute; right: -37px; top: 5px;
+            width: 16px; height: 16px; background: var(--accent-color);
+            border-radius: 50%; border: 3px solid #0f172a; z-index: 1;
+        }
+        .exp-date { font-weight: 800; color: var(--accent-color); margin-bottom: 5px; }
+        .exp-info h4 { font-size: 1.2rem; margin-bottom: 5px; }
+        .exp-info p { color: rgba(255,255,255,0.7); }
+
+        /* === 10. المركز الإعلامي (Media) === */
+        .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .media-card {
+            background: white; padding: 40px 30px; border-radius: 20px; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: var(--transition); border-top: 5px solid transparent;
+        }
+        .media-card:hover { transform: translateY(-10px); border-top-color: var(--accent-color); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        .media-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 20px; }
+        .media-card h3 { margin-bottom: 15px; color: var(--primary-color); }
+        .media-card p { color: var(--text-light); font-size: 0.95rem; line-height: 1.7; }
+
+        /* === 11. العبارات التسويقية (CTA) === */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), #2a3a8c); padding: 80px 0; text-align: center;
+        }
+        .cta-slogan { font-size: 2rem; color: white; font-weight: 300; margin-bottom: 30px; }
+        .cta-slogan span { color: var(--accent-color); }
+
+        /* === 12. التواصل (Contact) === */
+        .c-info { margin-top: 30px; }
+        .c-box { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; font-weight: 500; cursor: pointer; transition: 0.3s; color: var(--text-dark); }
+        .c-box:hover { color: var(--accent-color); transform: translateX(-5px); }
+        .c-box i { font-size: 1.5rem; color: var(--accent-color); width: 40px; }
+        .social-icons { display: flex; gap: 15px; margin-top: 30px; }
+        .social-icons a {
+            width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-color);
+            display: flex; align-items: center; justify-content: center; color: var(--primary-color);
+            transition: var(--transition); font-size: 1.2rem;
+        }
+        .social-icons a:hover { background: var(--primary-color); color: white; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(26, 42, 108, 0.2); }
+        
+        .contact-form-wrap {
+            background: var(--white); padding: 40px; border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08); border: 1px solid #eee;
+        }
+        .form-group { margin-bottom: 20px; text-align: right; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary-color); font-size: 0.95rem; }
+        input, select, textarea {
+            width: 100%; padding: 14px 20px; border: 2px solid #e2e8f0; border-radius: 12px;
+            font-size: 1rem; outline: none; font-family: 'Tajawal', sans-serif; transition: 0.3s; background: #f8f9fa;
+        }
+        input:focus, select:focus, textarea:focus { border-color: var(--accent-color); box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1); background: #fff; }
+        textarea { resize: none; }
+        
+        .form-status { margin-top: 15px; font-weight: 700; font-size: 0.95rem; display: none; }
+        .form-status.success { display: block; color: #2ecc71; }
+        .form-status.error { display: block; color: #e74c3c; }
+
+  .main-footer { 
+    background: #0f172a; 
+    color: #ffffff; 
+    padding: 80px 0 0; 
+    width: 100% !important; 
+    display: block !important;
+}
+.footer-grid { 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 40px; 
+    padding-bottom: 50px; 
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto !important; 
+}
+.footer-bottom {
+    background: #0b1120;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid #1e293b;
+    width: 100% !important;
+}
+
+.footer-title { color: #d4af37; font-size: 1.2rem; margin-bottom: 25px; position: relative; padding-bottom: 10px; }
+.footer-title::after { content: ''; position: absolute; bottom: 0; right: 0; width: 40px; height: 2px; background: #d4af37; }
+.footer-col p { font-size: 0.95rem; color: #94a3b8; line-height: 1.8; }
+.footer-links, .contact-list { list-style: none; }
+.footer-links li, .contact-list li { margin-bottom: 15px; color: #94a3b8; }
+.footer-links a { color: #94a3b8; text-decoration: none; transition: 0.3s; }
+.footer-links a:hover { color: #d4af37; padding-right: 10px; }
+.contact-list li i { color: #d4af37; margin-left: 10px; width: 20px; text-align: center; }
+.social-links { margin-top: 20px; display: flex; gap: 15px; }
+.social-links a { color: #94a3b8; font-size: 1.2rem; transition: 0.3s; }
+.social-links a:hover { color: #d4af37; transform: translateY(-3px); }
+.subscribe-form { display: flex; margin-top: 20px; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.subscribe-form input { padding: 12px; border: none; width: 100%; font-family: 'Tajawal', sans-serif; }
+.subscribe-form button { background: #d4af37; border: none; padding: 12px 20px; color: #fff; cursor: pointer; transition: 0.3s; font-family: 'Tajawal', sans-serif; }
+.subscribe-form button:hover { background: #b8960b; }
+
+/* الفوتر السفلي تظبيط العرض الكامل */
+.footer-bottom { 
+    background: #0b1120; 
+    padding: 20px 0; 
+    text-align: center; 
+    border-top: 1px solid #1e293b; 
+    width: 100% !important;
+}
+
+.footer-bottom p { color: #64748b; margin: 0; font-size: 0.9rem; }
+.developer-credit { color: #475569; display: block; margin-top: 5px; font-size: 0.8rem; }
+.developer-credit i { color: #ef4444; }
+
+/* === تظبيط الموبايل عشان الـ 4 أعمدة ميتداخلوش === */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr); /* عمودين في الشاشات المتوسطة */
+    }
+}
+@media (max-width: 576px) {
+    .footer-grid {
+        grid-template-columns: 1fr; /* عمود واحد تحت بعضه في الموبايل */
+        gap: 30px;
+    }
+}
+        /* === 14. ريسبونسيف (Mobile) === */
+        @media (max-width: 992px) {
+            .nav-links { 
+                position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
+                background: white; flex-direction: column; padding-top: 80px;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1); transition: 0.4s; z-index: 100;
+            }
+            .nav-links.active { right: 0; }
+            .menu-toggle { display: block; z-index: 101; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .bio-grid, .grid-2 { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr !important; }
+            .hero { padding-top: 120px; text-align: center; }
+            .cta-group { justify-content: center; }
+            .main-img { max-width: 300px; height: 350px; margin: 0 auto; }
+            .floating-badge { right: 5%; }
+            .section-title { font-size: 1.8rem; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-title::after { right: 50%; transform: translateX(50%); }
+            .social-icons { justify-content: center; }
+            .section-padding { padding: 60px 0; }
+        }
+
+
+/* كود جبري لإجبار الفوتر على أخذ العرض الكامل ومنع الانكماش */
+footer.main-footer, .main-footer {
+    display: block !important;
+    position: relative !important;
+    width: 100vw !important; /* يأخذ عرض شاشة الرؤية بالكامل */
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+    margin-right: calc(-50vw + 50%) !important; /* حركة سحرية تخرج الفوتر من أي حاوية ضيقة غصبًا عنها */
+    margin-left: calc(-50vw + 50%) !important;
+    background: #0f172a !important;
+    left: 0 !important;
+    right: 0 !important;
+    clear: both !important;
+    box-sizing: border-box !important;
+}
+
+/* تنسيق شبكة الفوتر بالداخل */
+.main-footer .footer-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 40px !important;
+    padding: 80px 5% 50px 5% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* الفوتر السفلي الأسود */
+.main-footer .footer-bottom {
+    background: #0b1120 !important;
+    padding: 20px 0 !important;
+    text-align: center !important;
+    border-top: 1px solid #1e293b !important;
+    width: 100% !important;
+    display: block !important;
+}
+
+/* استجابة الشاشات للموبايل */
+@media (max-width: 992px) {
+    .main-footer .footer-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+@media (max-width: 576px) {
+    .main-footer .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+}
+
+
+
+
+
+/* تنسيقات سيكشن الأبحاث */
+#research-papers {
+    background-color: #f9f9f9;
+}
+
+.publications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 15fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.pub-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid var(--gold-color, #d4af37); /* يفترض أن لون الهوية ذهبي */
+}
+
+.pub-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.pub-icon {
+    font-size: 2rem;
+    color: var(--gold-color, #d4af37);
+    margin-bottom: 15px;
+}
+
+.pub-journal {
+    display: block;
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.pub-content h3 {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.pub-links {
+    margin-top: auto;
+}
+
+.pub-btn.view {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: transparent;
+    color: var(--dark-color, #222);
+    border: 1px solid var(--gold-color, #d4af37);
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.pub-btn.view:hover {
+    background-color: var(--gold-color, #d4af37);
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   تنسيق سيكشن الواجهة بصورة خلفية (Hero Section Background)
+   ========================================================================== */
+
+.hero {
+    position: relative;
+    /* تصحيح مسار الصورة باستخدام / بدلاً من \ ليعمل على المتصفحات */
+    background-image: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)), url('images/4-6-1.jpg');
+    background-size: cover; /* يخلي الصورة تغطي السيكشن بالكامل دون تمطيط */
+    background-position: center center; /* يضمن توسيط الصورة دايماً */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* تأثير Parallax فخم جداً أثناء الاسكرول للكمبيوتر */
+    
+    padding: 160px 0 100px 0;
+    min-height: 100vh; /* يخلي السيكشن يملأ طول الشاشة */
+    display: flex;
+    align-items: center;
+    color: #ffffff; /* تحويل الخطوط للأبيض لتظهر بوضوح فوق الخلفية */
+}
+
+/* ضبط النصوص داخل الواجهة */
+.hero-content h1 {
+    font-size: 3rem;
+    color: #ffffff !important; /* إجبار اللون الأبيض للعنوان الرئيسي */
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 span {
+    color: #c5a880; /* لون الذهب المعتمد عندك */
+}
+
+.hero-content p {
+    color: rgba(255, 255, 255, 0.8) !important; /* نص وصفي مريح للعين */
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+}
+
+/* ضبط الزر الشفاف (Outline) عشان يتماشى مع الخلفية الجديدة */
+.hero-content .btn-outline {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.hero-content .btn-outline:hover {
+    background-color: #ffffff;
+    color: #0f172a;
+    transform: translateY(-2px);
+}
+
+/* ضبط برواز صورة الدكتورة ليتماشى مع الخلفية الداكنة */
+.main-img {
+    border: 5px solid rgba(255, 255, 255, 0.1) !important; /* برواز ناعم شفاف */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+.floating-badge {
+    background: #0f172a !important; /* جعل كرت الدكتورة العائم داكن ومتناسق */
+    color: #ffffff !important;
+    border-right: 4px solid #c5a880 !important;
+}
+
+/* ==========================================================================
+   التوافق التام والتقليص الذكي لشاشات الموبايل (Responsive Phone)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .hero {
+        background-attachment: scroll !important; /* إلغاء الـ fixed في الموبايل لسلامة الأداء */
+        padding: 80px 0 40px 0 !important; /* تقليص الحشو الداخلي عشان يلم نفسه ع الفون */
+        min-height: auto;
+        text-align: center;
+    }
+
+    .hero .container.grid-2 {
+        display: flex !important;
+        flex-direction: column !important; /* نزول العناصر تحت بعضها في الموبايل حتماً */
+        gap: 25px !important;
+    }
+
+    .hero-content {
+        text-align: center;
+        margin: 0 auto;
+        width: 100% !important;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem !important; /* تصغير العنوان عشان ميتكسرش في الموبايل */
+    }
+
+    .hero-content p {
+        font-size: 0.9rem !important;
+        margin-bottom: 25px !important;
+    }
+
+    .cta-group {
+        display: flex !important;
+        flex-direction: column !important; /* الأزرار تحت بعضها في الموبايل لسهولة الضغط */
+        gap: 12px !important;
+        width: 100% !important;
+    }
+
+    .cta-group .btn {
+        width: 100% !important;
+        justify-content: center !important;
+        margin: 0 !important; /* إلغاء أي هوامش جانبية قديمة */
+    }
+
+    .hero-image-wrap {
+        order: -1; /* يرفع صورة الدكتورة فوق الكلام في الموبايل (تنسيق أرتب جداً) */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    .main-img {
+        max-width: 220px !important; /* تحجيم صورة الدكتورة عشان ماتاكلش الشاشة في الفون */
+        height: auto !important;
+    }
+    
+    .floating-badge {
+        font-size: 0.8rem !important;
+        padding: 8px 12px !important;
+    }
+}
+/* ==========================================================================
+   تنسيق احترافي ومختصر لسيكشن الأبحاث (Clean & Professional)
+   ========================================================================== */
+
+#research {
+    background-color: #f8fafc; /* خلفية رمادية هادئة جداً ومريحة للعين */
+    padding: 70px 0;
+    direction: rtl;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* حاوية العنوان الرئيسي */
+.section-header {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 50px auto;
+    padding: 0 15px;
+}
+
+.section-header .sub-title {
+    color: #c5a880; /* اللون الذهبي الأكاديمي */
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.section-header h2 {
+    color: #0f172a; /* كحلي داكن جداً وفخم للنصوص */
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0 0 15px 0;
+}
+
+.section-header .section-desc {
+    color: #475569;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* التوافق السريع والذكي مع الموبايل والكمبيوتر للـ Container */
+.section-header, .publications-grid {
+    width: 90%;
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==========================================================================
+   تأمين الموبايل بنسبة 100% (Mobile Friendly)
+   ========================================================================== */
+@media (max-width: 768px) {
+    #research {
+        padding: 45px 0;
+    }
+    .section-header h2 {
+        font-size: 1.65rem; /* تصغير الخط ع الموبايل لمنع التكسير */
+    }
+    .section-header .section-desc {
+        font-size: 0.88rem;
+    }
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   المعرض الإعلامي الأسطوري - تصميم جبار متناسق مع موقع الدكتورة
+   ========================================================================== */
+
+.custom-folder-section {
+    padding: 80px 20px;
+    background-color: #f8fafc; /* متناسق مع خلفية موقعك */
+    direction: rtl;
+    overflow: hidden;
+}
+
+.folder-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* عنوان السيكشن بحركة ذكية */
+.folder-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.folder-header h2 {
+    color: #1a237e; /* الكحلي الفخم بتاعك */
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.folder-header .header-line {
+    width: 80px;
+    height: 5px;
+    background: linear-gradient(90deg, #1a237e, #3b82f6);
+    margin: 20px auto 0 auto;
+    border-radius: 5px;
+}
+
+/* 🌟 الكارت الجبار: تصميم زجاجي ثلاثي الأبعاد ثلاثي الأبعاد (Glassmorphism 3D) */
+.main-folder-card {
+    background: #ffffff;
+    border-radius: 24px; /* حواف ناعمة جداً واحترافية */
+    border: 1px solid rgba(26, 35, 126, 0.08);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03), 
+                0 1px 3px rgba(0, 0, 0, 0.01);
+    max-width: 750px;
+    margin: 0 auto;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); /* أنيميشن ناعم وسلس للغاية */
+}
+
+/* تأثير الحركة عند حرك الماوس فوق الكارت */
+.main-folder-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(26, 35, 126, 0.12);
+    border-color: rgba(26, 35, 126, 0.2);
+}
+
+/* حاوي الأيقونة بتأثير نبض وموجة دائرية */
+.folder-icon-wrapper {
+    font-size: 4rem;
+    margin-left: 30px;
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    box-shadow: inset 0 2px 5px rgba(255,255,255,0.5);
+}
+
+.main-folder-card:hover .folder-icon-wrapper {
+    transform: rotate(-10px) scale(1.1);
+    background: linear-gradient(135deg, #1a237e, #3b82f6);
+}
+
+/* تغيير الـ Emoji لونه يتماشى مع الخلفية عند الهوفر */
+.main-folder-card:hover .folder-emoji {
+    filter: brightness(1.2);
+}
+
+.folder-info {
+    text-align: right;
+    flex: 1;
+}
+
+.folder-info h3 {
+    color: #1a237e;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    transition: color 0.3s ease;
+}
+
+.folder-info p {
+    color: #64748b;
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+    line-height: 1.7;
+}
+
+/* زر التفاعل "التصفح" بشكل نيون خفيف */
+.action-hint {
+    color: #1a237e;
+    font-weight: 700;
+    font-size: 0.9rem;
+    background: rgba(26, 35, 126, 0.06);
+    padding: 8px 20px;
+    border-radius: 30px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.main-folder-card:hover .action-hint {
+    background: #1a237e;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(26, 35, 126, 0.3);
+}
+
+/* 🌟 شبكة عرض الميديا الأسطورية (عند الفتح) */
+.hidden-gallery-grid {
+    display: none; /* يتم تفعيله بالـ JS لـ grid */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+/* تصميم كروت الصور والفيديوهات الداخلية الفخمة */
+.grid-item {
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    position: relative;
+    padding-top: 56.25%; /* أبعاد السينما 16:9 المسطرة */
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideUpFade 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+/* تأثير التحويم على الصور (حركة زووم سينمائية البعد) */
+.grid-item img, .grid-item iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.grid-item:hover img {
+    transform: scale(1.08); /* زووم هادي وفخم جداً للداخل */
+}
+
+/* أنيميشن دخول الكروت بشكل تصاعدي غاية في السلاسة */
+@keyframes slideUpFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* توزيع تأثير الأنيميشن الزمني لظهور الكروت ورا بعضها تلقائياً */
+.grid-item:nth-child(1) { animation-delay: 0.1s; }
+.grid-item:nth-child(2) { animation-delay: 0.2s; }
+.grid-item:nth-child(3) { animation-delay: 0.3s; }
+.grid-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* متجاوب تماماً مع الشاشات الصغيرة والموبايل */
+@media (max-width: 768px) {
+    .main-folder-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    .folder-icon-wrapper {
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
+    .folder-info {
+        text-align: center;
+    }
+    .folder-header h2 {
+        font-size: 2rem;
+    }
+    .hidden-gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+<!-- شريط التقدم -->
+<div class="progress-bar" id="myBar"></div>
+
+<!-- خلفية متحركة -->
+<div class="bg-animation">
+    <div class="blob"></div>
+    <div class="blob"></div>
+</div>
+
+<div class="progress-bar" id="myBar"></div>
+
+<div class="bg-animation">
+    <div class="blob"></div>
+    <div class="blob"></div>
+</div>
+
+<nav class="navbar" id="navbar">
+    <div class="container nav-wrapper">
+        <div class="logo-area">
+            <span class="logo-text">د. عائشة ديحان العازمي</span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#bio">نبذة عني</a></li>
+            <li><a href="#academic">المؤهلات</a></li>
+            <li><a href="#experience">الخبرات</a></li>
+            <li><a href="#research">الأبحاث</a></li>
+            <li><a href="#teaching">التدريس</a></li>
+            <li><a href="#tdrg">خواطر في علم النفس</a></li>
+            <li><a href="#contact" class="nav-btn">اتصل بنا</a></li>
+        </ul>
+        <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+    </div>
+</nav>
+
+<header id="home" class="hero">
+    <div class="container grid-2">
+        <div class="hero-content" data-aos="fade-left">
+            <div class="badge">أستاذ مشارك - علم النفس التربوي</div>
+            <h1>بناء الإنسان.. <br><span>منهجاً، قياساً، وتقويماً</span></h1>
+            <p>أستاذ مشارك متخصص في علم النفس التربوي، أمتلك مسيرة مهنية حافلة بالبحث العلمي والتدريس الجامعي في الهيئة العامة للتعليم التطبيقى بكلية التربية الأساسية بالكويت. أسعى لتطوير المنظومة التربوية عبر دمج النظريات النفسية بالتطبيقات العملية.</p>
+            <div class="cta-group">
+                <a href="#contact" class="btn btn-gold">طلب استشارة <i class="fas fa-calendar-check"></i></a>
+                <a href="#research" class="btn btn-outline">استكشاف الأبحاث <i class="fas fa-book-open"></i></a>
+            </div>
+        </div>
+        <div class="hero-image-wrap" data-aos="fade-right">
+            <img src="images/WhatsApp Image 2026-05-03 at 8.20.09 PM.jpeg" class="main-img" alt="د. عائشة العازمي">
+            <div class="floating-badge">
+                <span>دكتوره في علم النفس التربوي</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="bio" class="section-padding">
+    <div class="container">
+        <div class="bio-grid">
+            <div class="bio-info" data-aos="fade-up">
+                <h2 class="section-title">نبذة عني</h2>
+                <p class="lead-text">أستاذ مشارك متخصص في علم النفس التربوي</p>
+                <p>أمتلك مسيرة مهنية حافلة بالبحث العلمي والتدريس الجامعي بالهيئة العامة العامة للتعليم التطبيقى والتنظيم كلية التربية الأساسية بالكويت. أسعى من خلال عملي إلى تطوير المنظومة التربوية عبر دمج النظريات النفسية الحديثة بالتطبيقات العملية، مع التركيز على القياس النفسي والتربوي لتطوير أدوات تقييم فعالة تساعد في فهم سلوك المتعلم وتحسين مخرجات التعليم.</p>
+                <ul class="key-features">
+                    <li><i class="fas fa-check-circle"></i> أستاذ مشارك بقسم علم النفس التربوي بالهيئة العامة للتعليم التطبيقى والتنظيم كلية التربية الأساسية بالكويت.</li>
+                    <li><i class="fas fa-check-circle"></i> مستشارة تربوية ونفسية معتمدة.</li>
+                    <li><i class="fas fa-check-circle"></i> باحثة ومحكمة علمية في المجلات المحكمة.</li>
+                    <li><i class="fas fa-check-circle"></i> عضو في لجان تطوير المناهج والاختبارات الوطنية.</li>
+                </ul>
+            </div>
+            <div class="bio-stats grid-2" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-item">
+                    <h3><span class="counter" data-target="35">0</span>+</h3>
+                    <p>بحثاً علمياً</p>
+                </div>
+                <div class="stat-item">
+                    <h3><span class="counter" data-target="200">0</span>+</h3>
+                    <p>ورشة عمل</p>
+                </div>
+                <div class="stat-item">
+                    <h3><span class="counter" data-target="27">0</span></h3>
+                    <p>سنة خبرة</p>
+                </div>
+                <div class="stat-item">
+                    <h3><span class="counter" data-target="100">0</span>%</h3>
+                    <p>التزام علمي</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+<section id="academic" class="bg-light section-padding">
+    <div class="container text-center">
+        <h2 class="section-title" data-aos="fade-up">المؤهلات العلمية</h2>
+        <div class="qual-grid">
+            <div class="qual-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="icon-box"><i class="fas fa-user-graduate"></i></div>
+                <h3>دكتوراه الفلسفة</h3>
+                <p class="univ">علم النفس التربوي</p>
+        
+            </div>
+            <div class="qual-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box"><i class="fas fa-graduation-cap"></i></div>
+                <h3>الماجستير</h3>
+                <p class="univ">علم النفس التربوي</p>
+                <p class="detail">تعمق في دراسة السياقات النفسية والتربوية للبيئة التعليمية.</p>
+            </div>
+            <div class="qual-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-box"><i class="fas fa-certificate"></i></div>
+                <h3>البكالوريوس</h3>
+                <p class="univ">بكالوريوس التربية</p>
+                <p class="detail">جامعة الكويت - الكلية الأساسية لتكوين المسيرة الأكاديمية.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="experience" class="bg-dark text-white section-padding">
+    <div class="container">
+        <h2 class="section-title light" data-aos="fade-up">الخبرات المهنية والأكاديمية</h2>
+        <div class="exp-timeline">
+            <div class="exp-item" data-aos="fade-left" data-aos-delay="100">
+                <div class="exp-date">الحالي</div>
+                <div class="exp-info">
+                    <h4>أستاذ مشارك بقسم علم النفس التربوي</h4>
+                    <p>الهيئة العامة للتعليم التطبيقى والتنظيم كلية التربية الأساسية بالكويت</p>
+                </div>
+            </div>
+            <div class="exp-item" data-aos="fade-left" data-aos-delay="200">
+                <div class="exp-date">عضو هيئة تدريس</div>
+                <div class="exp-info">
+                    <h4>تدريس المقررات التربوية والنفسية</h4>
+                    <p>تقديم مقررات متخصصة في القياس والتقويم والإحصاء التربوي وعلم النفس المعرفي.</p>
+                </div>
+            </div>
+            <div class="exp-item" data-aos="fade-left" data-aos-delay="300">
+                <div class="exp-date">استشارات</div>
+                <div class="exp-info">
+                    <h4>مستشارة تربوية ونفسية معتمدة</h4>
+                    <p>تقديم الحلول السلوكية والأكاديمية للجهات التعليمية والطلابية.</p>
+                </div>
+            </div>
+            <div class="exp-item" data-aos="fade-left" data-aos-delay="400">
+                <div class="exp-date">تحكيم علمي</div>
+                <div class="exp-info">
+                    <h4>باحثة ومحكمة علمية</h4>
+                    <p>في العديد من المجلات الأكاديمية المحكمة محلياً وإقليمياً.</p>
+                </div>
+            </div>
+            <div class="exp-item" data-aos="fade-left" data-aos-delay="500">
+                <div class="exp-date">تطوير</div>
+                <div class="exp-info">
+                    <h4>لجان تطوير المناهج والاختبارات الوطنية</h4>
+                    <p>المشاركة الفعالة في صياغة وتطوير المنظومة الاختبارية والمناهج التربوية.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="research" class="section-padding">
+    <div class="container">
+        <h2 class="section-title text-center" data-aos="fade-up">الاهتمامات البحثية والدراسات العلمية</h2>
+        <p class="text-center section-desc" data-aos="fade-up">تتركز اهتماماتي البحثية في المجالات الحيوية التالية والتي أثرت المكتبة التربوية العربية</p>
+       
+            <div class="research-box" data-aos="fade-up">
+                <div class="r-header">
+                    <span class="r-num">1</span>
+                    <h4>علم النفس المعرفي  والتربوي</h4>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="r-body">
+                    <p>دراسة العمليات الذهنية وأثرها على التحصيل الدراسي، وكيفية توظيفها لتحسين استراتيجيات التعلم.</p>
+                </div>
+            </div>
+            <div class="research-box" data-aos="fade-up">
+                <div class="r-header">
+                    <span class="r-num">2</span>
+                    <h4>الصحة النفسية للمتعلم</h4>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="r-body">
+                    <p>بحث أثر البيئة المدرسية على الاستقرار النفسي للطلبة، وتقديم حلول وقائية وعلاجية لدعم الصحة النفسية.</p>
+                </div>
+            </div>
+            <div class="research-box" data-aos="fade-up">
+                <div class="r-header">
+                    <span class="r-num">3</span>
+                    <h4>الإحصاء التربوي</h4>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="r-body">
+                    <p>استخدام النمذجة الإحصائية المتقدمة في تحليل البيانات التربوية الضخمة لدعم اتخاذ القرارات التعليمية.</p>
+                </div>
+            </div>
+            <div class="research-box" data-aos="fade-up">
+                <div class="r-header">
+                    <span class="r-num">4</span>
+                    <h4>التعليم الإلكتروني</h4>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="r-body">
+                    <p>دراسة الاتجاهات النفسية نحو التعلم عن بُعد في ظل المتغيرات الحديثة، وتقييم فاعلية المنصات الرقمية.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<section id="research-papers" class="section-padding">
+    <div class="container">
+        <h2 class="section-title text-center" data-aos="fade-up">الأبحاث العلمية المنشورة</h2>
+        <p class="text-center section-desc" data-aos="fade-up">الإنتاج الأكاديمي والدراسات العلمية المنشورة للدكتورة عائشة ديحان العازمي في المجلات والمنصات المحكمة</p>
+        
+        <div class="publications-grid">
+            
+            <div class="pub-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="pub-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="pub-content">
+                    <span class="pub-journal">منصة خزائن الرقمية Kezana</span>
+                    <h3> التوافق الجامعي وعلاقته بالقلق الأخلاقي لدى طالبات كلية التربية الأساسية بالكويت</h3>
+                    <div class="pub-links">
+                        <a href="https://kezana.ai/Details/article/dj9xrP18ID7hAUE-XoXJWg" target="_blank" class="pub-btn view">
+                            عرض البحث <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="pub-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="pub-icon"><i class="fas fa-lightbulb"></i></div>
+                <div class="pub-content">
+                    <span class="pub-journal">قاعدة معلومات دار المنظومة</span>
+                    <h3>فاعلية التعلم النشط في تنمية مفهوم الذات الأكاديمي وبعض مهارات التواصل الاجتماعي</h3>
+                    <div class="pub-links">
+                        <a href="https://search.mandumah.com/Record/1233017" target="_blank" class="pub-btn view">
+                            رابط دار المنظومة <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pub-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="pub-icon"><i class="fas fa-user-shield"></i></div>
+                <div class="pub-content">
+                    <span class="pub-journal">قاعدة معلومات دار المنظومة</span>
+                    <h3>فاعلية برنامج إرشادي قائم على نظرية العلاج بالمعنى في خفض التنمر المدرسي لدى طلاب المرحلة الثانوية بالكويت</h3>
+                    <div class="pub-links">
+                        <a href="https://search.mandumah.com/Record/1233307" target="_blank" class="pub-btn view">
+                            رابط دار المنظومة <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pub-card" data-aos="fade-up" data-aos-delay="350">
+                <div class="pub-icon"><i class="fas fa-user-friends"></i></div>
+                <div class="pub-content">
+                    <span class="pub-journal">قاعدة معلومات دار المنظومة</span>
+                    <h3>اضطراب الشخصية الحدية وعلاقته بالانطواء والخجل لدى طلاب المرحلة الثانوية بالكويت</h3>
+                    <div class="pub-links">
+                        <a href="https://search.mandumah.com/Record/1573106" target="_blank" class="pub-btn view">
+                            رابط دار المنظومة <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pub-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="pub-icon"><i class="fas fa-file-alt"></i></div>
+                <div class="pub-content">
+                    <span class="pub-journal">مجلة كلية التربية - بنك المعرفة المصري (EKB)</span>
+                    <h3>اثر جاءحه كورونا علي الدافعيه للتعلم والتحصيل  الدراسي لدي تلاميذ المرحلةالابتداءيه بالكويت</h3>
+                    <div class="pub-links">
+                        <a href="https://jfeps.journals.ekb.eg/article_371541.html" target="_blank" class="pub-btn view">
+                            رابط بنك المعرفة <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pub-card" data-aos="fade-up" data-aos-delay="450">
+                <div class="pub-icon"><i class="fas fa-clipboard-check"></i></div>
+                <div class="pub-content">
+                    <span class="pub-journal">التربية (الأزهر): مجلة علمية محكمة للبحوث التربوية والنفسية والاجتماعية</span>
+                    <h3>"اضطراب الشخصية الحدية وعلاقته بالانطواء والخجل لدى طلاب المرحلة الثانوية بالكوي</h3>
+                    <div class="pub-links">
+                        <a href="https://jsrep.journals.ekb.eg/article_404576.html" target="_blank" class="pub-btn view">
+                            رابط بنك المعرفة <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+             <div class="pub-card" data-aos="fade-up" data-aos-delay="500">
+    <div class="pub-icon"><i class="fas fa-file-alt"></i></div>
+    <div class="pub-content">
+        <span class="pub-journal">مجلة العلوم التربوية والنفسية - البحرين </span>
+        <h3>العوامل الخمسه الكبري للشخصيه والدافعيه للانجاز كمبنبءات باالتسويف الاكاديمي لدي طلاب المرحله الثانويه بالكويت</h3>
+        <div class="pub-links">
+            <a href="https://search.emarefa.net/detail/BIM-1524720" target="_blank" class="pub-btn view">
+                رابط قاعدة معرفة <i class="fas fa-external-link-alt"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="pub-card" data-aos="fade-up" data-aos-delay="600">
+    <div class="pub-icon"><i class="fas fa-file-alt"></i></div>
+    <div class="pub-content">
+        <span class="pub-journal">المجلة التربوية - جامعة الكويت</span>
+        <h3>قلق الامتحان كمتغير منبي بتناقضا ادراك  الذات لدي  عينه من الشباب مدمني  شبكات التواصل الاجتماعي</h3>
+        <div class="pub-links">
+            <a href="https://search.emarefa.net/detail/BIM-1641412" target="_blank" class="pub-btn view">
+                رابط قاعدة معرفة <i class="fas fa-external-link-alt"></i>
+            </a>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+</section>
+
+
+<section id="research" class="publications-section">
+    <div class="container">
+        
+        <div class="section-header" data-aos="fade-up">
+       <span class="sub-title">الإنتاج الأكاديمي</span>
+            <h2>الأبحاث والدراسات العلمية</h2>
+            <p class="section-desc">مجموعة من الدراسات والبحوث التخصصية المنشورة في مجلات علمية محكمة في مجال علم النفس التربوي.</p>
+        </div>
+
+        <div class="publications-grid">
+
+            <div class="pub-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="pub-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="pub-content">
+                    <span class="pub-journal">مجله كليه تربيه ببنها</span>
+                    <h3>فاعلية التعلم النشط في تنمية مفهوم الذات الأكاديمي وبعض المهارات الاجتماعية لدى طلاب المرحلة المتوسطه</h3>
+                </div>
+            </div>
+
+            <div class="pub-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="pub-icon"><i class="fas fa-user-shield"></i></div>
+                <div class="pub-content">
+                    <span class="pub-journal">دراسات تربوية ونفسية - مجلة كلية التربية بالزقازيق (أبريل 2022)</span>
+                    <h3>فاعلية برنامج إرشادي قائم على نظرية العلاج بالمعنى في خفض التنمر المدرسي لدى طلاب المرحلة الثانوية بالكويت</h3>
+                </div>
+            </div>
+
+            <div class="pub-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="pub-icon"><i class="fas fa-book-reader"></i></div>
+                <div class="pub-content">
+                    <span class="pub-journal">مجله كليه تربيه.جامعه الاسكندريه</span>
+                    <h3>مستوى الطموح وعلاقته بمهارات الاستذكار وتوجهات الهدف لدى طلاب المرحلة المتوسطة بالكويت</h3>
+                </div>
+            </div>
+
+            <div class="pub-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="pub-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="pub-content">
+                    <span class="pub-journal">الهيئة العامة للتعليم التطبيقي والتدريب كلية التربية الأساسية بالكويت قسم علم النفس</span>
+                    <h3>التوافق الجامعي وعلاقته بالقلق الاخلاقي</h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="tdrg" class="publications-section">
+    <div class="container">
+<div class="pub-card" data-aos="fade-up" data-aos-delay="200">
+    <div class="pub-icon"><i class="fas fa-brain"></i></div>
+    <div class="pub-content">
+        <span class="pub-journal">ثقافة ونفسيات</span>
+        <h3>خواطر ونفحات في علم النفس وتطوير الذات</h3>
+        <p style="color: #64748b; font-size: 0.9rem; margin-top: 5px; line-height: 1.6;">
+            مجموعة من الأقوال، النفحات الصباحية، والتطبيقات العملية المستمدة من الوعي النفسي لضبط الانفعالات وبناء المرونة النفسية.
+        </p>
+        <div class="pub-links" style="margin-top: 15px;">
+            <a href="khawatir.pdf.pdf" class="pub-btn view">
+                تصفح الخواطر والنفحات <i class="fas fa-arrow-left" style="margin-right: 5px;"></i>
+            </a>
+        </div>
+    </div>
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+<section class="custom-folder-section">
+    <div class="folder-container">
+        
+        <div class="folder-header">
+            <h2>المعرض الإعلامي المرئي</h2>
+            <div class="header-line"></div>
+        </div>
+
+        <div class="main-folder-card" id="folderCard" onclick="toggleGallery()">
+            <div class="folder-icon-wrapper">
+                <span class="folder-emoji">📁</span>
+            </div>
+            <div class="folder-info">
+                <h3>ألبوم الصور والفيديوهات الأكاديمية</h3>
+                <p>اضغط هنا لاستعراض التوثيق المرئي للمؤتمرات والندوات الخاصة بالدكتورة</p>
+                <span class="action-hint">اضغط للتصفح الآن ↓</span>
+            </div>
+        </div>
+
+        <div class="hidden-gallery-grid" id="galleryGrid">
+            
+            <div class="grid-item">
+                <img src="images\WhatsApp Image 2026-05-10 at 12.56.50 PM.jpeg" alt="معرض الدكتورة - صورة 1">
+            </div>
+
+            <div class="grid-item">
+                <img src="images\WhatsApp Image 2026-05-10 at 12.56.51 PM.jpeg" alt="معرض الدكتورة - صورة 2">
+            </div>
+
+            <div class="grid-item">
+                <img src="images/WhatsApp Image 2026-05-20 at 7.40.48 PM.jpeg" alt="معرض الدكتورة - صورة 3">
+            </div>
+
+            <div class="grid-item">
+                <img src="images/WhatsApp Image 2026-05-20 at 7.41.04 PM.jpeg" alt="معرض الدكتورة - صورة 4">
+            </div>
+
+            <div class="grid-item">
+                <img src="images\WhatsApp Image 2026-05-20 at 10.00.51 PM.jpeg" alt="معرض الدكتورة - صورة 5">
+            </div>
+
+            <div class="grid-item video-item">
+                <iframe src="images\WhatsApp Video 2026-05-20 at 10.00.49 PM.mp4" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <div class="grid-item video-item">
+                <iframe src="images\WhatsApp Video 2026-05-20 at 10.00.50 PM.mp4" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <div class="grid-item video-item">
+                <iframe src="images\WhatsApp Video 2026-05-20 at 10.00.50 PM(1).mp4" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="grid-item video-item">
+                <iframe src="images\WhatsApp Video 2026-05-20 at 10.00.51 PM.mp4" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <div class="grid-item video-item">
+                <iframe src="images\WhatsApp Video 2026-05-20 at 10.00.51 PM(1).mp4" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="teaching" class="bg-light section-padding">
+    <div class="container text-center">
+        <h2 class="section-title" data-aos="fade-up">المقررات التدريسية</h2>
+        <p class="section-desc" data-aos="fade-up">المواد الأكاديمية التي تقوم الدكتورة بتدريسها لطلبة البكالوريوس والدراسات العليا</p>
+        <div class="courses-grid">
+            <div class="course-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="icon-box"><i class="fas fa-brain"></i></div>
+                <h3>علم النفس التربوي</h3>
+            </div>
+            <div class="course-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box"><i class="fas fa-ruler-combined"></i></div>
+                <h3>القياس والتقويم التربوي</h3>
+            </div>
+            <div class="course-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-box"><i class="fas fa-chart-bar"></i></div>
+                <h3>الإحصاء في التربية</h3>
+            </div>
+            <div class="course-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="icon-box"><i class="fas fa-microscope"></i></div>
+                <h3>مناهج البحث العلمي</h3>
+            </div>
+            <div class="course-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="icon-box"><i class="fas fa-lightbulb"></i></div>
+                <h3>سيكولوجية التعلم</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="media" class="section-padding">
+    <div class="container text-center">
+        <h2 class="section-title" data-aos="fade-up">المركز الإعلامي</h2>
+        <div class="media-grid">
+            <div class="media-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-newspaper"></i>
+                <h3>مقالات تربوية</h3>
+                <p>مقالات تربوية منشورة في الصحف المحلية تناقش قضايا التعليم والسلوك.</p>
+            </div>
+            <div class="media-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-tv"></i>
+                <h3>لقاءات إعلامية</h3>
+                <p>لقاءات تلفزيونية وإذاعية لمناقشة قضايا التعليم والطلبة وتقديم الرؤى العلمية.</p>
+            </div>
+            <div class="media-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-microphone-alt"></i>
+                <h3>مؤتمرات دولية</h3>
+                <p>المشاركة في المؤتمرات الدولية والمحلية كمتحدث رئيسي ومحكمة للأبحاث.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-slogan" data-aos="zoom-in">"نحو تعليم يراعي الجوانح النفسية <span>لبناء شخصية متكاملة."</span></div>
+        <div class="cta-slogan" data-aos="zoom-in" data-aos-delay="200">"العلم هو السلاح، <span>وعلم النفس التربوي هو الموجه."</span></div>
+        <div class="cta-slogan" data-aos="zoom-in" data-aos-delay="400">"خبرة أكاديمية في القياس والتقويم <span>لضمان جودة التعليم."</span></div>
+    </div>
+</section>
+
+<section id="contact" class="section-padding bg-light">
+    <div class="container grid-2">
+        <div class="contact-details" data-aos="fade-left">
+            <h2 class="section-title">بيانات التواصل</h2>
+            <p style="color: var(--text-light); margin-bottom: 20px;">يسعدنا تواصلكم للاستشارات التربوية، الورش التدريبية، والتعاون البحثي العلمي.</p>
+            <div class="c-info">
+                
+                <div class="c-box">
+                    <i class="fas fa-location-dot"></i>
+                    <span>كلية التربية الأساسية بالهيئة العامة للتعليم التطبيقى  بالكويت</span>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+
+        <div class="contact-form-wrap" data-aos="fade-right">
+            <form id="contactForm" action="https://formsubmit.co/adraisha@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="رسالة جديدة من الموقع الرسمي لد. عائشة">
+                <input type="hidden" name="_template" value="table">
+                <input type="text" name="_honey" style="display:none"> 
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" name="name" placeholder="أدخل اسمك الكامل" required>
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
+                </div>
+                <div class="form-group">
+                    <label>نوع الاستشارة</label>
+                    <select name="consultation_type" required>
+                        <option value="" disabled selected>اختر نوع الاستشارة</option>
+                        <option value="استشارة تربوية">استشارة تربوية</option>
+                        <option value="تعديل سلوك">تعديل سلوك</option>
+                        <option value="تعاون بحثي">تعاون بحثي</option>
+                        <option value="أخرى">أخرى</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>الرسالة</label>
+                    <textarea rows="4" name="message" placeholder="كيف يمكننا مساعدتك؟" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-gold w-100">إرسال الرسالة <i class="fas fa-paper-plane"></i></button>
+                <div id="formStatus" class="form-status"></div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer class="main-footer">
+    <div class="footer-grid">
+        
+        <div class="footer-col">
+            <h3 class="footer-title">د. عائشة العازمي</h3>
+            <p>
+                أستاذ مشارك في علم النفس التربوي والمعرفي بـ كلية التربية الأساسية بالكويت الهيئة العامة للتعليم التطبيقي. رؤية أكاديمية تجمع بين الأصالة التربوية والابتكار المعاصر لبناء جيل واعد.
+            </p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h3 class="footer-title">تصفح الموقع</h3>
+            <ul class="footer-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#about">نبذة عني</a></li>
+                <li><a href="#research">الأبحاث العلمية</a></li>
+                <li><a href="#media">المركز الإعلامي</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3 class="footer-title">تواصل سريع</h3>
+            <ul class="contact-list">
+                
+                <li><i class="fas fa-envelope"></i> adraisha@gmail.com</li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3 class="footer-title">النشرة التربوية</h3>
+            <p>اشترك للحصول على أحدث الأبحاث والمقالات التربوية.</p>
+            <form class="subscribe-form">
+                <input type="email" placeholder="بريدك الإلكتروني" required>
+                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+
+    </div>
+
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // تهيئة AOS
+    AOS.init({
+        duration: 1000,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 50
+    });
+
+    // شريط التنقل وقائمة الموبايل
+    const navbar = document.getElementById('navbar');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        document.getElementById("myBar").style.width = (winScroll / height) * 100 + "%";
+    });
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = menuToggle.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            menuToggle.querySelector('i').classList.add('fa-bars');
+            menuToggle.querySelector('i').classList.remove('fa-times');
+        });
+    });
+
+    // الأكورديون
+    document.querySelectorAll('.research-box').forEach(box => {
+        box.addEventListener('click', function() {
+            const isOpen = this.classList.contains('active');
+            document.querySelectorAll('.research-box').forEach(b => {
+                b.classList.remove('active');
+                b.querySelector('i').className = 'fas fa-plus';
+            });
+            if (!isOpen) {
+                this.classList.add('active');
+                this.querySelector('i').className = 'fas fa-minus';
+            }
+        });
+    });
+
+    // عداد الأرقام
+    const counters = document.querySelectorAll('.counter');
+    const speed = 300;
+    const runCounter = (counter) => {
+        const target = +counter.getAttribute('data-target');
+        const increment = target / speed;
+        const updateCount = () => {
+            const count = +counter.innerText;
+            if(count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCount, 10);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        updateCount();
+    };
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                runCounter(entry.target);
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    counters.forEach(counter => counterObserver.observe(counter));
+
+    // الواتساب الذكي
+    const waNumbers = ["96566180168", "96567003694"];
+    document.querySelectorAll('.c-box').forEach((box, index) => {
+        if(box.querySelector('.fa-whatsapp') && waNumbers[index]) {
+            box.style.cursor = "pointer";
+            box.onclick = () => window.open(`https://wa.me/${waNumbers[index]}`, '_blank');
+        }
+    });
+
+    // const form = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+
+if (form && formStatus) {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const action = form.getAttribute('action');
+
+        // تأمين في حالة نسيان وسم الأكشن في الـ HTML
+        if (!action || action === '#') {
+            formStatus.textContent = 'خطأ: لم يتم تحديد رابط الإرسال (Action).';
+            formStatus.className = 'form-status error';
+            formStatus.style.display = 'block';
+            return;
+        }
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
+        submitBtn.disabled = true;
+        
+        // إظهار عنصر الحالة مجدداً في حال كان مخفياً من محاولة سابقة
+        formStatus.style.display = 'block'; 
+
+        fetch(action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => {
+            if (response.ok) {
+                formStatus.textContent = 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.';
+                formStatus.className = 'form-status success';
+                form.reset();
+            } else {
+                formStatus.textContent = 'حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.';
+                formStatus.className = 'form-status error';
+            }
+        })
+        .catch(error => {
+            formStatus.textContent = 'تعذر الاتصال بالخادم، تحقق من الإنترنت.';
+            formStatus.className = 'form-status error';
+        })
+        .finally(() => {
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+                formStatus.textContent = '';
+                formStatus.className = 'form-status';
+            }, 5000);
+        });
+    });
+}
+
+
+
+
+
+function toggleGallery() {
+    var grid = document.getElementById("galleryGrid");
+    
+    // لو الشبكة مخفية أو مفيش ليها ستايل، خليها تظهر على شكل Grid
+    if (grid.style.display === "none" || grid.style.display === "") {
+        grid.style.display = "grid";
+    } else {
+        grid.style.display = "none"; // لو ضغطوا تاني تختفي
+    }
+}
+
+
+
+
+
+</script>
+</body>
+</html>
