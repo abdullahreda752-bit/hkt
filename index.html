@@ -3,7 +3,6 @@
 <head>
     
     <meta charset="UTF-8">
-    <meta name="google-site-verification" content="AHrxO37dPZ5mu3cxstQUaFJgtq3WV-Tv2Yo80SU_ZGo" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="الموقع الرسمي للدكتورة عائشة ديحان العازمي - ستاذ مشارك علم النفس التربوي">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -984,6 +983,14 @@ footer.main-footer, .main-footer {
 
 
 
+
+
+
+
+
+
+
+
     </style>
 </head>
 <body>
@@ -1206,11 +1213,11 @@ footer.main-footer, .main-footer {
 
 
 <section id="research-papers" class="section-padding">
-    <div class="container">
+    <d class="container">
         <h2 class="section-title text-center" data-aos="fade-up">الأبحاث العلمية المنشورة</h2>
         <p class="text-center section-desc" data-aos="fade-up">الإنتاج الأكاديمي والدراسات العلمية المنشورة للدكتورة عائشة ديحان العازمي في المجلات والمنصات المحكمة</p>
         
-        <div class="publications-grid">
+        <di class="publications-grid">
             
             <div class="pub-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="pub-icon"><i class="fas fa-graduation-cap"></i></div>
@@ -1316,8 +1323,39 @@ footer.main-footer, .main-footer {
         </div>
     </div>
 </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="pub-card" data-aos="fade-up" data-aos-delay="650">
+    <div class="pub-icon"><i class="fas fa-book-open"></i></div>
+    <div class="pub-content">
+        <span class="pub-journal">جامعة حائل - كلية التربية</span>
+        <h3>كتاب أبحاث المؤتمر الدولي السنوي الرابع: الاتجاهات الحديثة في العلوم التربوية</h3>
+        <div class="pub-links">
+            <a href="Research_book_4_260809_101258كتاب مؤتمر جامعة حاءل.pdf" target="_blank" class="pub-btn view">
+                تحميل / تصفح الكتاب <i class="fas fa-file-pdf"></i>
+            </a>
         </div>
     </div>
+</div>
+
 </section>
 
 
@@ -1406,6 +1444,34 @@ footer.main-footer, .main-footer {
 
 
 
+<section id="tdrg" class="publications-section">
+    <div class="container">
+        <div class="pub-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="pub-icon"><i class="fas fa-award"></i></div>
+            <div class="pub-content">
+                <span class="pub-journal">برقية تهنئة</span>
+                <h3>تهنئة بالتميز والتفوق</h3>
+                <p style="color: #64748b; font-size: 0.9rem; margin-top: 5px; line-height: 1.6;">
+                    تهنىء طالبات كلية التربية الأساسية بالهيئة العامة للتعليم التطبيقى بالكويت الدكتورة عاءشة ديحان العازمى والدكتورة رنا سحيم دبوس على مشاركتهن بالمؤتمر الدولى بجامعة حاءل بالسعودية وإخراج كتاب المؤتمر فى نبتته الاصلية مبروووك التفوق والنجاح.
+                </p>
+                <div class="pub-links" style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="https://doi.org/10.22521/edupij.2026.22.53" class="pub-btn view" target="_blank">
+                        تصفح كتاب المؤتمر <i class="fas fa-external-link-alt" style="margin-right: 5px;"></i>
+                    </a>
+                    <a href="files_1_articles_article_1039_EDUPIJ_1039_article_69eeb46874402.PDF" class="pub-btn view" target="_blank" style="background-color: #475569;">
+                        تحميل / تصفح الـ PDF <i class="fas fa-file-pdf" style="margin-right: 5px;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
 
 
 
@@ -1481,6 +1547,10 @@ footer.main-footer, .main-footer {
 
             <div class="grid-item video-item">
                 <iframe src="images\WhatsApp Video 2026-05-20 at 10.00.51 PM(1).mp4" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+             <div class="grid-item video-item">
+                <iframe src="images\WhatsApp Video 2026-08-13 at 4.48.53 PM.mp4" frameborder="0" allowfullscreen></iframe>
             </div>
 
         </div>
@@ -1674,6 +1744,24 @@ footer.main-footer, .main-footer {
     </div>
 
 
+
+
+
+<footer style="background-color: #0f172a; color: #94a3b8; text-align: center; padding: 20px 10px; margin-top: 40px; font-size: 0.9rem; border-top: 1px solid #1e293b;">
+    <div class="container">
+        <p style="margin: 0;">
+            جميع الحقوق محفوظة &copy; <span id="year"></span> | د.عائشةديحان العازمى - استشارات وتطوير علم النفس والتربية
+        </p>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     // تهيئة AOS
@@ -1837,7 +1925,7 @@ function toggleGallery() {
 
 
 
-
+document.getElementById('year').textContent = new Date().getFullYear();
 
 </script>
 </body>
